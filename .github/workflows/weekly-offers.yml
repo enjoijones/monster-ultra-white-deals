@@ -47,6 +47,7 @@ jobs:
             echo "Keine Änderung an angebote.json."
           else
             git commit -m "Wöchentliche Angebotsdaten aktualisieren"
+            git pull --rebase origin main
             git push
           fi
 
