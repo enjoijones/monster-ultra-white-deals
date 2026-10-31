@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: REWE-Angebote prüfen
+      - name: Regionale Prospektangebote prüfen
         run: python scripts/update_offers.py
 
       - name: Geänderte Angebotsdaten veröffentlichen
@@ -39,3 +39,4 @@ jobs:
             git commit -m "Wöchentliche Angebotsdaten aktualisieren"
             git push
           fi
+
