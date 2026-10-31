@@ -1,4 +1,17 @@
 {
   "updatedAt": "2026-10-31",
-  "offers": []
+  "offers": [
+    {
+      "retailer": "REWE",
+      "product": "Monster Energy (Sorte nicht angegeben)",
+      "price": 0.99,
+      "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
+      "regionValidity": "kaufDA-Angebotsübersicht Amberg; Filialteilnahme und regionale Preisabweichungen prüfen; Händler: REWE",
+      "verification": "unverified",
+      "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
+      "url": "https://www.kaufda.de/Amberg-Oberpf/Angebote/Energydrink",
+      "validFrom": "2026-10-26",
+      "validUntil": "2026-10-31"
+    }
+  ]
 }
