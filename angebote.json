@@ -2,18 +2,6 @@
   "updatedAt": "2026-10-31",
   "offers": [
     {
-      "retailer": "Netto Marken-Discount",
-      "product": "Monster Energy (Sorte nicht angegeben)",
-      "price": 0.88,
-      "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
-      "regionValidity": "kaufDA-Händlerangebot; Teilnahme und Preis im lokalen Netto-Markt prüfen; Händler: Netto Marken-Discount",
-      "verification": "unverified",
-      "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
-      "url": "https://www.kaufda.de/Angebote/Monster-Energy",
-      "validFrom": "2026-10-26",
-      "validUntil": "2026-10-31"
-    },
-    {
       "retailer": "REWE",
       "product": "Monster Energy (Sorte nicht angegeben)",
       "price": 0.99,
@@ -24,6 +12,42 @@
       "url": "https://www.kaufda.de/Amberg-Oberpf/Angebote/Energydrink",
       "validFrom": "2026-10-26",
       "validUntil": "2026-10-31"
+    },
+    {
+      "retailer": "Netto Marken-Discount",
+      "product": "Monster Energy (Sorte nicht angegeben)",
+      "price": 0.88,
+      "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
+      "regionValidity": "kaufDA-Händlerangebot; lokale Teilnahme und Preise können abweichen; Händler: Netto Marken-Discount",
+      "verification": "unverified",
+      "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
+      "url": "https://www.kaufda.de/Angebote/Monster-Energy",
+      "validFrom": "2026-10-26",
+      "validUntil": "2026-10-31"
+    },
+    {
+      "retailer": "EDEKA",
+      "product": "Monster Energy (Sorte nicht angegeben)",
+      "price": 0.99,
+      "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
+      "regionValidity": "kaufDA-Händlerangebot; lokale Teilnahme und Preise können abweichen; Händler: EDEKA",
+      "verification": "unverified",
+      "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
+      "url": "https://www.kaufda.de/Angebote/Monster-Energy",
+      "validFrom": "2026-11-02",
+      "validUntil": "2026-11-07"
+    },
+    {
+      "retailer": "E center",
+      "product": "Monster Energy (Sorte nicht angegeben)",
+      "price": 0.99,
+      "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
+      "regionValidity": "kaufDA-Händlerangebot; lokale Teilnahme und Preise können abweichen; Händler: E center",
+      "verification": "unverified",
+      "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
+      "url": "https://www.kaufda.de/Angebote/Monster-Energy",
+      "validFrom": "2026-11-02",
+      "validUntil": "2026-11-07"
     }
   ]
 }
