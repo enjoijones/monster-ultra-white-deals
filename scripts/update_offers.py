@@ -29,10 +29,10 @@ SOURCES = [
         "kind": "standard",
     },
     {
-        "retailer": "Monster-Angebote bei Netto (kaufDA)",
-        "region": "kaufDA-Händlerangebot; Teilnahme und Preis im lokalen Netto-Markt prüfen",
+        "retailer": "Monster-Angebote (kaufDA)",
+        "region": "kaufDA-Händlerangebot; lokale Teilnahme und Preise können abweichen",
         "url": "https://www.kaufda.de/Angebote/Monster-Energy",
-        "kind": "kaufda_netto",
+        "kind": "kaufda_monster",
     },
     {
         "retailer": "Monster-Angebote in Amberg (kaufDA)",
@@ -94,7 +94,10 @@ def parse_date(value: str, year_hint: int) -> date:
 
 
 def parse_validity(text: str, today: date, kind: str) -> tuple[date, date]:
-    if kind in {"kaufda_area", "kaufda_netto"}:
+    if kind == "kaufda_monster":
+        start = today - timedelta(days=today.weekday())
+        return start, start + timedelta(days=6)
+    if kind == "kaufda_area":
         date_ranges = re.findall(
             r"(?:Mo\.\s*)?(\d{1,2}\.\d{1,2}\.)\s*-\s*(?:Sa\.\s*)?(\d{1,2}\.\d{1,2}\.\d{4})",
             text,
@@ -129,6 +132,32 @@ def parse_validity(text: str, today: date, kind: str) -> tuple[date, date]:
     if end < start or (end - start).days > 14:
         raise RuntimeError("Erkannter Angebotszeitraum ist unplausibel")
     return start, end
+
+
+def find_retailer_window(
+    text: str, retailer: str, before_position: int, today: date
+) -> tuple[date, date] | None:
+    header = re.compile(
+        rf"Monster Energy bei\s+{re.escape(retailer)}\b",
+        flags=re.IGNORECASE,
+    )
+    headers = [match for match in header.finditer(text) if match.start() < before_position]
+    for match in reversed(headers):
+        section = text[match.end() : match.end() + 350]
+        date_match = re.search(
+            r"(\d{1,2}\.\d{1,2}\.)\s*-\s*(?:Sa\.\s*)?(\d{1,2}\.\d{1,2}\.\d{4})",
+            section,
+            flags=re.IGNORECASE,
+        )
+        if not date_match:
+            continue
+        start = parse_date(date_match.group(1), today.year)
+        end = parse_date(date_match.group(2), today.year)
+        if start.month > end.month:
+            start = start.replace(year=start.year - 1)
+        if 0 <= (end - start).days <= 14:
+            return start, end
+    return None
 
 
 def get_offer_price(section: str) -> float | None:
@@ -197,19 +226,24 @@ def parse_monster_candidates(
         if not re.search(r"Energy|Energydrink", section, flags=re.IGNORECASE):
             continue
         after_product = text[match.start() : match.start() + 260]
-        if source["kind"] == "kaufda_netto":
-            netto_card = re.search(
-                r"Energy Drink von Monster für\s*([0-9][,.][0-9]{2})\s*€\s*bei\s+(Netto Marken-Discount)\s*im Angebot",
+        if source["kind"] == "kaufda_monster":
+            card = re.search(
+                r"(?:Energy\s*Drink|Energydrink) von Monster für\s*([0-9][,.][0-9]{2})\s*€\s*bei\s+(Netto Marken-Discount|Netto mit dem Scottie|E\s*center|ALDI\s*SÜD|Getränke Hoffmann|REWE|Kaufland|Penny|Lidl|EDEKA|diska|GLOBUS|Norma|Müller|nahkauf)\s*im Angebot",
                 section,
                 flags=re.IGNORECASE,
             )
-            if not netto_card:
+            if not card:
                 continue
-            price = float(netto_card.group(1).replace(",", "."))
-            retailer = netto_card.group(2)
+            price = float(card.group(1).replace(",", "."))
+            retailer = card.group(2)
+            retailer_window = find_retailer_window(text, retailer, match.start(), today)
+            if not retailer_window:
+                continue
+            offer_start, offer_end = retailer_window
         else:
             price = get_offer_price(after_product)
             retailer = retailer_from_context(after_product) if source["kind"] == "kaufda_area" else source["retailer"]
+            offer_start, offer_end = valid_from, valid_until
         if price is None or price <= 0 or price > 10:
             continue
         has_500ml = bool(re.search(r"0[,\.]5\s*-?\s*l|500\s*ml", section, re.IGNORECASE))
@@ -235,14 +269,14 @@ def parse_monster_candidates(
                 "verification": "confirmed" if is_exact else "unverified",
                 "badge": "ULTRA WHITE BESTÄTIGT" if is_exact else "SORTENANGEBOT NICHT BESTÄTIGT",
                 "url": source["url"],
-                "validFrom": valid_from.isoformat(),
-                "validUntil": valid_until.isoformat(),
+                "validFrom": offer_start.isoformat(),
+                "validUntil": offer_end.isoformat(),
             }
         )
     # Repeated title/alt text can expose the same product card more than once.
-    unique: dict[tuple[str, float, str], dict] = {}
+    unique: dict[tuple[str, float, str, str, str], dict] = {}
     for offer in offers:
-        key = (offer["retailer"], offer["price"], offer["product"])
+        key = (offer["retailer"], offer["price"], offer["product"], offer["validFrom"], offer["validUntil"])
         unique[key] = offer
     return list(unique.values())
 
@@ -266,7 +300,12 @@ def main() -> int:
             text = get_page_text(source["url"])
             start, end = parse_validity(text, today, source["kind"])
             offers = parse_monster_candidates(text, source, start, end, today)
-            found.extend(o for o in offers if o["validFrom"] <= today.isoformat() <= o["validUntil"])
+            next_week_end = today + timedelta(days=(7 - today.weekday()) + 6)
+            found.extend(
+                offer for offer in offers
+                if offer["validUntil"] >= today.isoformat()
+                and offer["validFrom"] <= next_week_end.isoformat()
+            )
             successful.add(source["retailer"])
             print(f"{source['retailer']}: Quelle geprüft, {len(offers)} Treffer.")
         except (URLError, TimeoutError, RuntimeError, ValueError) as exc:
@@ -280,10 +319,19 @@ def main() -> int:
     # only for sources that were actually read successfully.
     for offer in previous.get("offers", []):
         retailer = offer.get("retailer", "")
-        if retailer in failed and offer.get("validUntil", "") >= today.isoformat():
+        next_week_end = today + timedelta(days=(7 - today.weekday()) + 6)
+        if (
+            retailer in failed
+            and offer.get("validUntil", "") >= today.isoformat()
+            and offer.get("validFrom", "") <= next_week_end.isoformat()
+        ):
             found.append(offer)
 
-    data = {"updatedAt": today.isoformat(), "offers": found}
+    unique: dict[tuple[str, float, str, str, str], dict] = {}
+    for offer in found:
+        key = (offer["retailer"], offer["price"], offer["product"], offer["validFrom"], offer["validUntil"])
+        unique[key] = offer
+    data = {"updatedAt": today.isoformat(), "offers": list(unique.values())}
     OFFERS_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Insgesamt {len(found)} aktuell gültige Monster-Angebote gespeichert.")
     return 0
