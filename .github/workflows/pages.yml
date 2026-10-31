@@ -1,0 +1,42 @@
+name: Homepage auf GitHub Pages veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Projektdateien laden
+        uses: actions/checkout@v6
+
+      - name: GitHub Pages vorbereiten
+        uses: actions/configure-pages@v5
+
+      - name: Homepage-Dateien zusammenstellen
+        run: |
+          mkdir _site
+          cp index.html app.js styles.css angebote.json _site/
+
+      - name: Veröffentlichungsdateien hochladen
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Homepage veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
