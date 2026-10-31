@@ -17,12 +17,6 @@ ROOT = Path(__file__).resolve().parents[1]
 OFFERS_FILE = ROOT / "angebote.json"
 SOURCES = [
     {
-        "retailer": "REWE, Rosenberger Str. 104",
-        "region": "Sulzbach-Rosenberg, dieser Markt",
-        "url": "https://www.rewe.de/angebote/sulzbach-rosenberg/461687/rewe-rosenberger-str-104/",
-        "kind": "rewe",
-    },
-    {
         "retailer": "Kaufland, Krötenseestraße 1",
         "region": "Sulzbach-Rosenberg, diese Filiale",
         "url": "https://filiale.kaufland.de/service/filiale/sulzbach-rosenberg-2400.html",
@@ -35,100 +29,16 @@ SOURCES = [
         "kind": "standard",
     },
     {
-        "retailer": "E center Kunert, Rosenberger Straße 40",
-        "region": "Sulzbach-Rosenberg, dieser Markt",
-        "url": "https://www.edeka.de/maerkte/022706/",
-        "kind": "standard",
+        "retailer": "Monster-Angebote in Sulzbach-Rosenberg (kaufDA)",
+        "region": "kaufDA-Angebotsübersicht Sulzbach-Rosenberg; Filialteilnahme und regionale Preisabweichungen prüfen",
+        "url": "https://www.kaufda.de/Sulzbach-Rosenberg/Angebote/Energydrink",
+        "kind": "kaufda_area",
     },
     {
-        "retailer": "E center Kunert, Welser Straße 11 (Amberg)",
-        "region": "Amberg, dieser Markt",
-        "url": "https://www.edeka.de/maerkte/022703/",
-        "kind": "standard",
-    },
-    {
-        "retailer": "EDEKA Wiesmeth, Neumühler Straße 7 (Amberg)",
-        "region": "Amberg, dieser Markt",
-        "url": "https://www.edeka.de/maerkte/022924/",
-        "kind": "standard",
-    },
-    {
-        "retailer": "EDEKA Wiesmeth, Pfistermeisterstraße 33 A (Amberg)",
-        "region": "Amberg, dieser Markt",
-        "url": "https://www.edeka.de/maerkte/023193/",
-        "kind": "standard",
-    },
-    {
-        "retailer": "diska, Sebastianstraße 49 (Amberg)",
-        "region": "Amberg, dieser Markt",
-        "url": "https://www.edeka.de/markt-id/8001410/prospekt/",
-        "kind": "standard",
-    },
-    {
-        "retailer": "Netto Marken-Discount, Rosenberger Straße 40",
-        "region": "Sulzbach-Rosenberg, diese Filiale",
-        "url": "https://www.netto-online.de/filialen/sulzbach-rosenberg/rosenberger-strasse-40/2806/",
-        "kind": "netto",
-    },
-    {
-        "retailer": "Netto Marken-Discount, Hauptstraße 38",
-        "region": "Sulzbach-Rosenberg, diese Filiale",
-        "url": "https://www.netto-online.de/filialen/sulzbach-rosenberg/hauptstr-38/8349",
-        "kind": "netto",
-    },
-    {
-        "retailer": "Netto Marken-Discount, Regensburger Straße 70 (Amberg)",
-        "region": "Amberg, diese Filiale",
-        "url": "https://www.netto-online.de/filialen/amberg/regensburger-str-70/8335",
-        "kind": "netto",
-    },
-    {
-        "retailer": "Netto Marken-Discount, Kaiser-Ludwig-Ring 1 (Amberg)",
-        "region": "Amberg, diese Filiale",
-        "url": "https://www.netto-online.de/filialen/amberg/kaiser-ludwig-ring-1/8369",
-        "kind": "netto",
-    },
-    {
-        "retailer": "Netto Marken-Discount, Mosacherweg 26 (Amberg)",
-        "region": "Amberg, diese Filiale",
-        "url": "https://www.netto-online.de/filialen/amberg/mosacherweg-26/1249",
-        "kind": "netto",
-    },
-    {
-        "retailer": "Netto Marken-Discount, Stauffenbergstraße 6 (Amberg)",
-        "region": "Amberg, diese Filiale",
-        "url": "https://www.netto-online.de/filialen/amberg/stauffenbergstr-6/1491",
-        "kind": "netto",
-    },
-    {
-        "retailer": "Netto City, Georgenstraße 41 (Amberg)",
-        "region": "Amberg, diese Filiale",
-        "url": "https://www.netto-online.de/filialen/amberg/georgenstrasse-41/8423",
-        "kind": "netto",
-    },
-    {
-        "retailer": "ALDI SÜD (Prospekt Sulzbach-Rosenberg)",
-        "region": "Prospektübersicht Sulzbach-Rosenberg; Filialteilnahme prüfen",
-        "url": "https://www.kaufda.de/Sulzbach-Rosenberg/ALDI-SUeD/p-r90",
-        "kind": "kaufda",
-    },
-    {
-        "retailer": "ALDI SÜD (Prospekt Amberg)",
-        "region": "Prospektübersicht Amberg; Filialteilnahme prüfen",
-        "url": "https://www.kaufda.de/Amberg-Oberpf/ALDI-SUeD/p-r90",
-        "kind": "kaufda",
-    },
-    {
-        "retailer": "Lidl, Karolinenstraße 26",
-        "region": "Prospektübersicht Sulzbach-Rosenberg; Lidl-Markt vor Ort",
-        "url": "https://www.kaufda.de/Sulzbach-Rosenberg/Lidl/p-r74",
-        "kind": "kaufda",
-    },
-    {
-        "retailer": "Lidl (Prospekt Amberg)",
-        "region": "Prospektübersicht Amberg; teilnehmende Lidl-Filialen prüfen",
-        "url": "https://www.kaufda.de/Amberg-Oberpf/Lidl/p-r74",
-        "kind": "kaufda",
+        "retailer": "Monster-Angebote in Amberg (kaufDA)",
+        "region": "kaufDA-Angebotsübersicht Amberg; Filialteilnahme und regionale Preisabweichungen prüfen",
+        "url": "https://www.kaufda.de/Amberg-Oberpf/Angebote/Energydrink",
+        "kind": "kaufda_area",
     },
 ]
 
@@ -184,10 +94,7 @@ def parse_date(value: str, year_hint: int) -> date:
 
 
 def parse_validity(text: str, today: date, kind: str) -> tuple[date, date]:
-    if kind in {"weekly", "aldi"}:
-        start = today - timedelta(days=today.weekday())
-        return start, start + timedelta(days=5)
-    if kind == "kaufda":
+    if kind == "kaufda_area":
         date_ranges = re.findall(
             r"(?:Mo\.\s*)?(\d{1,2}\.\d{1,2}\.)\s*-\s*(?:Sa\.\s*)?(\d{1,2}\.\d{1,2}\.\d{4})",
             text,
@@ -198,30 +105,9 @@ def parse_validity(text: str, today: date, kind: str) -> tuple[date, date]:
             end = parse_date(end_text, today.year)
             if start.month > end.month:
                 start = start.replace(year=start.year - 1)
-            if start <= today <= end:
+            if 0 <= (end - start).days <= 14 and start <= today <= end:
                 return start, end
-        raise RuntimeError("Kein aktuell gültiger Lidl-Prospekt auf kaufDA erkannt")
-    if kind == "rewe":
-        match = re.search(
-            r"Diese Woche\s*(\d{1,2}\.\d{1,2}\.)\s*bis\s*(\d{1,2}\.\d{1,2}\.)",
-            text,
-            flags=re.IGNORECASE,
-        )
-    elif kind == "netto":
-        matches = re.findall(
-            r"Filial-Angebote\s+ab Montag,?\s*(\d{1,2}\.\d{1,2}\.\d{2,4})",
-            text,
-            flags=re.IGNORECASE,
-        )
-        starts = [parse_date(value, today.year) for value in matches]
-        starts = [start for start in starts if start <= today]
-        if not starts:
-            raise RuntimeError("Aktueller Netto-Prospektzeitraum nicht erkannt")
-        start = max(starts)
-        end = start + timedelta(days=5)
-        if today > end:
-            raise RuntimeError("Netto-Prospekt auf der Seite ist nicht mehr aktuell")
-        return start, end
+        raise RuntimeError("Kein aktuell gültiger Angebotszeitraum in der Angebotsübersicht erkannt")
     else:
         match = re.search(
             r"Gültig vom\s+(\d{1,2}\.\d{1,2}\.\d{4})\s+bis(?: zum)?\s+(\d{1,2}\.\d{1,2}\.\d{4})",
@@ -253,6 +139,46 @@ def get_offer_price(section: str) -> float | None:
         r"(?:UVP|statt)\s*\d{1,2}[,.]\d{2}\s+(\d{1,2}[,.]\d{2})\s*\*?",
         r"-\d{1,2}\s*%\s*(\d{1,2}[,.]\d{2})\b",
         r"\bab\s*(\d{1,2}[,.]\d{2})\s*€",
+        r"(?<![\d,.])(\d{1,2}[,.]\d{2})\s*€",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, section, flags=re.IGNORECASE)
+        if match:
+            return float(match.group(1).replace(",", "."))
+    return None
+
+
+def retailer_from_context(section: str) -> str | None:
+    retailers = [
+        (r"Netto Marken-Discount", "Netto Marken-Discount"),
+        (r"Netto mit dem Scottie", "Netto"),
+        (r"E\s*center", "E center"),
+        (r"ALDI\s*SÜD", "ALDI SÜD"),
+        (r"Getränke Hoffmann", "Getränke Hoffmann"),
+        (r"REWE", "REWE"),
+        (r"Kaufland", "Kaufland"),
+        (r"Penny", "PENNY"),
+        (r"Lidl", "Lidl"),
+        (r"EDEKA", "EDEKA"),
+        (r"diska", "diska"),
+        (r"GLOBUS", "GLOBUS"),
+        (r"Norma", "Norma"),
+        (r"Müller", "Müller"),
+        (r"nahkauf", "nahkauf"),
+    ]
+    matches = []
+    for pattern, retailer in retailers:
+        match = re.search(pattern, section, flags=re.IGNORECASE)
+        if match:
+            matches.append((match.start(), retailer))
+    return min(matches)[1] if matches else None
+
+
+def unit_price_per_liter(section: str) -> float | None:
+    patterns = [
+        r"1\s*l\s*=\s*([\d]+[,.][\d]{2})",
+        r"\(\s*([\d]+[,.][\d]{2})\s*/\s*l\s*\)",
+        r"\b([\d]+[,.][\d]{2})\s*/\s*l\b",
     ]
     for pattern in patterns:
         match = re.search(pattern, section, flags=re.IGNORECASE)
@@ -265,51 +191,41 @@ def parse_monster_candidates(
     text: str, source: dict, valid_from: date, valid_until: date, today: date
 ) -> list[dict]:
     offers: list[dict] = []
-    pattern = re.compile(r"Monster\s+Energy(?:\s+Drink)?", flags=re.IGNORECASE)
+    pattern = re.compile(r"\bMonster\b", flags=re.IGNORECASE)
     for match in pattern.finditer(text):
-        section = text[max(0, match.start() - 100) : match.start() + 300]
-        price = get_offer_price(section)
+        section = text[max(0, match.start() - 160) : match.start() + 260]
+        if not re.search(r"Energy|Energydrink", section, flags=re.IGNORECASE):
+            continue
+        after_product = text[match.start() : match.start() + 260]
+        price = get_offer_price(after_product)
         if price is None or price <= 0 or price > 10:
             continue
         has_500ml = bool(re.search(r"0[,\.]5\s*-?\s*l|500\s*ml", section, re.IGNORECASE))
-        unit_price = re.search(r"1\s*l\s*=\s*([\d]+[,.][\d]{2})", section, re.IGNORECASE)
+        unit_price = unit_price_per_liter(after_product)
         inferred_500ml = bool(
-            source["kind"] == "kaufda"
-            and unit_price
-            and abs(float(unit_price.group(1).replace(",", ".")) * 0.5 - price) <= 0.03
+            unit_price is not None
+            and abs(unit_price * 0.5 - price) <= 0.03
         )
         if not has_500ml and not inferred_500ml:
             continue
 
-        offer_start, offer_end = valid_from, valid_until
-        if source["kind"] == "aldi":
-            preceding = text[max(0, match.start() - 700) : match.start()]
-            start_labels = re.findall(
-                r"Angebote ab (?:Montag|Donnerstag|Freitag|Samstag)\s+(\d{1,2}\.\d{1,2}\.?)",
-                preceding,
-                flags=re.IGNORECASE,
-            )
-            if not start_labels:
-                continue
-            offer_start = parse_date(start_labels[-1], valid_from.year)
-            offer_end = offer_start + timedelta(days=5 - offer_start.weekday())
-            if not offer_start <= today <= offer_end:
-                continue
-
+        retailer = retailer_from_context(after_product) if source["kind"] == "kaufda_area" else source["retailer"]
+        if not retailer:
+            continue
         is_exact = bool(re.search(r"Ultra\s+White", section, re.IGNORECASE))
         is_variety = bool(re.search(r"versch(?:iedene)?\.?\s+Sorten", section, re.IGNORECASE))
         offers.append(
             {
-                "retailer": source["retailer"],
+                "retailer": retailer,
                 "product": "Monster Energy Ultra White" if is_exact else "Monster Energy, verschiedene Sorten" if is_variety else "Monster Energy (Sorte nicht angegeben)",
                 "price": price,
                 "size": "0,5 l Dose" if has_500ml else "0,5 l Dose (aus Grundpreis abgeleitet)",
-                "regionValidity": source["region"],
+                "regionValidity": f"{source['region']}; Händler: {retailer}",
                 "verification": "confirmed" if is_exact else "unverified",
                 "badge": "ULTRA WHITE BESTÄTIGT" if is_exact else "SORTENANGEBOT NICHT BESTÄTIGT",
                 "url": source["url"],
-                "validFrom": offer_start.isoformat(),
-                "validUntil": offer_end.isoformat(),
+                "validFrom": valid_from.isoformat(),
+                "validUntil": valid_until.isoformat(),
             }
         )
     # Repeated title/alt text can expose the same product card more than once.
