@@ -1,12 +1,12 @@
 # Monster Ultra White Deals
 
-Die statische Homepage zeigt Angebote aus `angebote.json`. GitHub Actions aktualisiert die Datei wöchentlich; GitHub Pages veröffentlicht die Änderung anschließend.
+Die statische Homepage zeigt aktuelle Angebote und eine Vorschau auf die nächste Woche aus `angebote.json`. GitHub Actions aktualisiert die Datei wöchentlich; GitHub Pages veröffentlicht die Änderung anschließend.
 
 ## Suchgebiet und Quellen
 
-Der Suchlauf prüft die lokalen Energydrink-Angebotsübersichten von kaufDA für Amberg, die kaufDA-Monster-Angebotsseite als Netto-Fallback sowie die Angebotsseite von Kaufland für Sulzbach-Rosenberg und Amberg. kaufDA liefert Händler- und Preisangaben; beim Netto-Fallback ist die Teilnahme einer konkreten Filiale nicht separat belegt. Die Seiten weisen auf mögliche regionale Preisabweichungen hin, daher wird die lokale Verfügbarkeit nicht garantiert angezeigt. Die zuvor direkt abgefragten REWE-, EDEKA- und Netto-Seiten blockieren GitHub Actions teilweise mit HTTP 403 und werden nicht mehr einzeln abgefragt.
+Der Suchlauf prüft die lokalen Energydrink-Angebotsübersichten von kaufDA für Amberg, die kaufDA-Monster-Angebotsseite für laufende und kommende Prospekte sowie die Angebotsseite von Kaufland für Sulzbach-Rosenberg und Amberg. kaufDA liefert Händler- und Preisangaben; bei allgemeinen Händlerangeboten ist die Teilnahme einer konkreten Filiale nicht separat belegt. Die Seiten weisen auf mögliche regionale Preisabweichungen hin, daher wird die lokale Verfügbarkeit nicht garantiert angezeigt. Die zuvor direkt abgefragten REWE-, EDEKA- und Netto-Seiten blockieren GitHub Actions teilweise mit HTTP 403 und werden nicht mehr einzeln abgefragt.
 
-Ein Angebot gilt als **bestätigt**, wenn die Quelle ausdrücklich Monster Ultra White nennt. Allgemeine Monster-Angebote ohne Sortenangabe werden als `unverified` angezeigt. Es werden nur 500-ml-Angebote übernommen; die Dosen-Größe darf aus dem angezeigten Literpreis abgeleitet werden. Wenn eine Quelle ausfällt, bleiben noch gültige frühere Treffer dieser Quelle erhalten. Wenn keine Quelle erfolgreich geprüft wird, bleibt `angebote.json` unverändert.
+Ein Angebot gilt als **bestätigt**, wenn die Quelle ausdrücklich Monster Ultra White nennt. Allgemeine Monster-Angebote ohne Sortenangabe werden als `unverified` angezeigt. Es werden nur 500-ml-Angebote übernommen; die Dosen-Größe darf aus dem angezeigten Literpreis abgeleitet werden. Der Suchlauf speichert auch Treffer, deren Angebotszeitraum in der nächsten Kalenderwoche beginnt. Die Homepage zeigt diese in einem eigenen Vorschau-Bereich unter den aktuellen Angeboten. Wenn eine Quelle ausfällt, bleiben noch gültige frühere Treffer dieser Quelle erhalten. Wenn keine Quelle erfolgreich geprüft wird, bleibt `angebote.json` unverändert.
 
 ## Automatisierung
 
