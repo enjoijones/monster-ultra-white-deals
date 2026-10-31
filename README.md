@@ -10,7 +10,7 @@ Ein Angebot gilt als **bestätigt**, wenn die Quelle ausdrücklich Monster Ultra
 
 ## Automatisierung
 
-Der Workflow `.github/workflows/weekly-offers.yml` läuft montags um 08:13 Uhr (Europe/Berlin). Ein manueller Start ist im GitHub-Tab **Actions** über **Wöchentliche Angebotssuche → Run workflow** möglich. Damit der Job `angebote.json` committen kann, muss unter **Settings → Actions → General → Workflow permissions** Schreibzugriff für `GITHUB_TOKEN` erlaubt sein. Die Änderung an `angebote.json` löst danach die Pages-Veröffentlichung aus.
+Der Workflow `.github/workflows/weekly-offers.yml` läuft montags um 08:13 Uhr (Europe/Berlin), nach Änderungen am Suchskript oder Workflow sowie manuell über **Actions → Wöchentliche Angebotssuche → Run workflow**. Damit der Job `angebote.json` committen kann, muss unter **Settings → Actions → General → Workflow permissions** Schreibzugriff für `GITHUB_TOKEN` erlaubt sein. Die Homepage wird direkt nach jedem Suchlauf veröffentlicht.
 
 ## Angebotsdaten und lokale Vorschau
 
