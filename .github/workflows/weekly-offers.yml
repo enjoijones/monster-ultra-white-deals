@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: weekly-offers
@@ -16,6 +18,9 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Repository laden
         uses: actions/checkout@v6
@@ -39,4 +44,21 @@ jobs:
             git commit -m "Wöchentliche Angebotsdaten aktualisieren"
             git push
           fi
+
+      - name: GitHub Pages vorbereiten
+        uses: actions/configure-pages@v5
+
+      - name: Homepage-Dateien zusammenstellen
+        run: |
+          mkdir _site
+          cp index.html app.js styles.css angebote.json _site/
+
+      - name: Veröffentlichungsdateien hochladen
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Homepage veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
 
