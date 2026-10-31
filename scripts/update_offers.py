@@ -29,10 +29,10 @@ SOURCES = [
         "kind": "standard",
     },
     {
-        "retailer": "Monster-Angebote in Sulzbach-Rosenberg (kaufDA)",
-        "region": "kaufDA-Angebotsübersicht Sulzbach-Rosenberg; Filialteilnahme und regionale Preisabweichungen prüfen",
-        "url": "https://www.kaufda.de/Sulzbach-Rosenberg/Angebote/Energydrink",
-        "kind": "kaufda_area",
+        "retailer": "Monster-Angebote bei Netto (kaufDA)",
+        "region": "kaufDA-Händlerangebot; Teilnahme und Preis im lokalen Netto-Markt prüfen",
+        "url": "https://www.kaufda.de/Angebote/Monster-Energy",
+        "kind": "kaufda_netto",
     },
     {
         "retailer": "Monster-Angebote in Amberg (kaufDA)",
@@ -94,7 +94,7 @@ def parse_date(value: str, year_hint: int) -> date:
 
 
 def parse_validity(text: str, today: date, kind: str) -> tuple[date, date]:
-    if kind == "kaufda_area":
+    if kind in {"kaufda_area", "kaufda_netto"}:
         date_ranges = re.findall(
             r"(?:Mo\.\s*)?(\d{1,2}\.\d{1,2}\.)\s*-\s*(?:Sa\.\s*)?(\d{1,2}\.\d{1,2}\.\d{4})",
             text,
@@ -197,7 +197,19 @@ def parse_monster_candidates(
         if not re.search(r"Energy|Energydrink", section, flags=re.IGNORECASE):
             continue
         after_product = text[match.start() : match.start() + 260]
-        price = get_offer_price(after_product)
+        if source["kind"] == "kaufda_netto":
+            netto_card = re.search(
+                r"Energy Drink von Monster für\s*([0-9][,.][0-9]{2})\s*€\s*bei\s+(Netto Marken-Discount)\s*im Angebot",
+                section,
+                flags=re.IGNORECASE,
+            )
+            if not netto_card:
+                continue
+            price = float(netto_card.group(1).replace(",", "."))
+            retailer = netto_card.group(2)
+        else:
+            price = get_offer_price(after_product)
+            retailer = retailer_from_context(after_product) if source["kind"] == "kaufda_area" else source["retailer"]
         if price is None or price <= 0 or price > 10:
             continue
         has_500ml = bool(re.search(r"0[,\.]5\s*-?\s*l|500\s*ml", section, re.IGNORECASE))
@@ -209,7 +221,6 @@ def parse_monster_candidates(
         if not has_500ml and not inferred_500ml:
             continue
 
-        retailer = retailer_from_context(after_product) if source["kind"] == "kaufda_area" else source["retailer"]
         if not retailer:
             continue
         is_exact = bool(re.search(r"Ultra\s+White", section, re.IGNORECASE))
