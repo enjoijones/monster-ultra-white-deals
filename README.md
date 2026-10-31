@@ -4,7 +4,7 @@ Die statische Homepage zeigt Angebote aus `angebote.json`. GitHub Actions aktual
 
 ## Suchgebiet und Quellen
 
-Der Suchlauf prüft die lokalen Energydrink-Angebotsübersichten von kaufDA für Sulzbach-Rosenberg und Amberg sowie die Angebotsseite von Kaufland für Sulzbach-Rosenberg und Amberg. kaufDA liefert Händler- und Preisangaben im regionalen Zusammenhang. Die Übersicht weist aber selbst auf mögliche regionale Preisabweichungen hin; die Teilnahme der einzelnen Filiale wird daher auf der Homepage nicht als garantiert dargestellt. Die zuvor direkt abgefragten REWE-, EDEKA- und Netto-Seiten blockieren GitHub Actions teilweise mit HTTP 403 und werden nicht mehr einzeln abgefragt.
+Der Suchlauf prüft die lokalen Energydrink-Angebotsübersichten von kaufDA für Amberg, die kaufDA-Monster-Angebotsseite als Netto-Fallback sowie die Angebotsseite von Kaufland für Sulzbach-Rosenberg und Amberg. kaufDA liefert Händler- und Preisangaben; beim Netto-Fallback ist die Teilnahme einer konkreten Filiale nicht separat belegt. Die Seiten weisen auf mögliche regionale Preisabweichungen hin, daher wird die lokale Verfügbarkeit nicht garantiert angezeigt. Die zuvor direkt abgefragten REWE-, EDEKA- und Netto-Seiten blockieren GitHub Actions teilweise mit HTTP 403 und werden nicht mehr einzeln abgefragt.
 
 Ein Angebot gilt als **bestätigt**, wenn die Quelle ausdrücklich Monster Ultra White nennt. Allgemeine Monster-Angebote ohne Sortenangabe werden als `unverified` angezeigt. Es werden nur 500-ml-Angebote übernommen; die Dosen-Größe darf aus dem angezeigten Literpreis abgeleitet werden. Wenn eine Quelle ausfällt, bleiben noch gültige frühere Treffer dieser Quelle erhalten. Wenn keine Quelle erfolgreich geprüft wird, bleibt `angebote.json` unverändert.
 
