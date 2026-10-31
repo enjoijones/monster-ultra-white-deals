@@ -61,12 +61,6 @@ function makeOfferCard(offer) {
     badge.textContent = offer.badge;
     top.append(badge);
   }
-  const verification = document.createElement("span");
-  const isConfirmed = offer.verification === "confirmed";
-  verification.className = `verification ${isConfirmed ? "verification-confirmed" : "verification-unverified"}`;
-  verification.textContent = isConfirmed ? "Sortenangebot bestätigt" : "Nicht sortenrein bestätigt";
-  top.append(verification);
-
   const bottom = document.createElement("div");
   bottom.className = "offer-bottom";
   const detail = document.createElement("div");
