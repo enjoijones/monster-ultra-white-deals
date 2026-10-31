@@ -1,6 +1,11 @@
 name: Wöchentliche Angebotssuche
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/update_offers.py"
+      - ".github/workflows/weekly-offers.yml"
   schedule:
     - cron: "13 8 * * 1"
       timezone: Europe/Berlin
