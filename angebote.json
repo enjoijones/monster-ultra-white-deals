@@ -2,6 +2,18 @@
   "updatedAt": "2026-10-31",
   "offers": [
     {
+      "retailer": "Netto Marken-Discount",
+      "product": "Monster Energy (Sorte nicht angegeben)",
+      "price": 0.88,
+      "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
+      "regionValidity": "kaufDA-Händlerangebot; Teilnahme und Preis im lokalen Netto-Markt prüfen; Händler: Netto Marken-Discount",
+      "verification": "unverified",
+      "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
+      "url": "https://www.kaufda.de/Angebote/Monster-Energy",
+      "validFrom": "2026-10-26",
+      "validUntil": "2026-10-31"
+    },
+    {
       "retailer": "REWE",
       "product": "Monster Energy (Sorte nicht angegeben)",
       "price": 0.99,
