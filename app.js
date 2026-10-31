@@ -16,6 +16,15 @@ function getWeekLabel() {
   return `KW ${weekNumber} · ${format.format(start)} – ${format.format(end)}`;
 }
 
+function getNextWeekLabel() {
+  const today = new Date();
+  const mondayOffset = (today.getDay() + 6) % 7;
+  const start = new Date(today.getFullYear(), today.getMonth(), today.getDate() - mondayOffset + 7);
+  const end = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 6);
+  const format = new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit" });
+  return `${format.format(start)} – ${format.format(end)}`;
+}
+
 function localDateString(date = new Date()) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -103,32 +112,43 @@ function safeSourceUrl(value) {
 
 async function loadOffers() {
   document.querySelector("#week-label").textContent = getWeekLabel();
+  document.querySelector("#next-week-label").textContent = getNextWeekLabel();
   const grid = document.querySelector("#offers-grid");
+  const upcomingGrid = document.querySelector("#upcoming-grid");
   try {
     const response = await fetch("angebote.json", { cache: "no-store" });
     if (!response.ok) throw new Error("Angebotsdatei nicht verfügbar");
     const data = await response.json();
     const today = localDateString();
+    const nextWeekEndDate = new Date();
+    const mondayOffset = (nextWeekEndDate.getDay() + 6) % 7;
+    nextWeekEndDate.setDate(nextWeekEndDate.getDate() - mondayOffset + 13);
+    const nextWeekEnd = localDateString(nextWeekEndDate);
     const offers = (Array.isArray(data) ? data : data.offers || []).filter((offer) =>
       Number.isFinite(Number(offer.price)) && Number(offer.price) > 0 &&
-      (!offer.validFrom || offer.validFrom <= today) && (!offer.validUntil || offer.validUntil >= today)
+      (!offer.validFrom || offer.validFrom <= nextWeekEnd) && (!offer.validUntil || offer.validUntil >= today)
     );
-    grid.replaceChildren();
-    if (offers.length) {
-      offers.forEach((offer) => grid.append(makeOfferCard(offer)));
-    } else {
-      const empty = document.createElement("div");
-      empty.className = "empty-card";
-      empty.innerHTML = '<div class="empty-symbol" aria-hidden="true">✳</div><strong>Aktuell sind keine Angebote eingetragen.</strong>Neue Deals erscheinen hier, sobald Preis, Zeitraum und Quelle geprüft wurden.';
-      grid.append(empty);
-    }
+    const currentOffers = offers.filter((offer) => !offer.validFrom || offer.validFrom <= today);
+    const upcomingOffers = offers.filter((offer) => offer.validFrom && offer.validFrom > today);
+    renderOfferGroup(grid, currentOffers, "Aktuell sind keine Angebote eingetragen.", "Neue Deals erscheinen hier, sobald Preis, Zeitraum und Quelle geprüft wurden.");
+    renderOfferGroup(upcomingGrid, upcomingOffers, "Für nächste Woche sind noch keine Angebote gefunden.", "Die Vorschau wird nach der nächsten Prospektprüfung aktualisiert.");
   } catch (error) {
-    grid.replaceChildren();
-    const message = document.createElement("div");
-    message.className = "empty-card";
-    message.innerHTML = '<strong>Angebote gerade nicht erreichbar.</strong>Bitte lade die Seite später noch einmal.';
-    grid.append(message);
+    renderOfferGroup(grid, [], "Angebote gerade nicht erreichbar.", "Bitte lade die Seite später noch einmal.");
+    renderOfferGroup(upcomingGrid, [], "Vorschau gerade nicht erreichbar.", "Bitte lade die Seite später noch einmal.");
   }
 }
 
+function renderOfferGroup(grid, offers, emptyTitle, emptyText) {
+  grid.replaceChildren();
+  if (offers.length) {
+    offers.forEach((offer) => grid.append(makeOfferCard(offer)));
+    return;
+  }
+  const empty = document.createElement("div");
+  empty.className = "empty-card";
+  empty.innerHTML = `<div class="empty-symbol" aria-hidden="true">✳</div><strong>${emptyTitle}</strong>${emptyText}`;
+  grid.append(empty);
+}
+
 loadOffers();
+
