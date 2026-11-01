@@ -3,3 +3,18 @@
 .offer-top .badge{flex-basis:100%;width:max-content}
 .next-week-panel{margin-top:64px;padding-top:34px;border-top:1px solid #ffffff12}.next-week-heading{margin-bottom:24px}
 
+
+/* Simple visitor gate; this is a front-end convenience, not server-side authentication. */
+.access-gate{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 38%,#b8e95212 0,transparent 35%),var(--bg)}
+.access-card{width:min(100%,390px);padding:36px;background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 24px 80px #0005}
+.access-mark{width:42px;height:42px;display:grid;place-items:center;background:var(--lime);color:#12150d;border-radius:50%;font-family:var(--display);font-weight:700}
+.access-eyebrow{margin:22px 0 7px;color:#aab3ac;font-size:10px;letter-spacing:.19em;font-weight:700}
+.access-card h1{margin:0;font-family:var(--display);font-size:34px;letter-spacing:-.05em}
+.access-description{margin:10px 0 24px;color:var(--muted);font-size:13px;line-height:1.6}
+.access-card label{display:block;margin-bottom:7px;color:#d5dad5;font-size:12px}
+.access-card input{width:100%;padding:12px 13px;border:1px solid #394039;border-radius:4px;background:#101211;color:var(--text);font:inherit;outline:none}
+.access-card input:focus{border-color:var(--lime);box-shadow:0 0 0 2px #c5ff4a22}
+.access-card button{width:100%;margin-top:13px;padding:13px 16px;border:0;border-radius:4px;background:var(--lime);color:#12150d;font:700 13px var(--font);cursor:pointer}
+.access-card button span{float:right;font-size:17px}
+.access-message{min-height:18px;margin:12px 0 0;color:#ff9a9a;font-size:12px}
+[hidden]{display:none!important}
