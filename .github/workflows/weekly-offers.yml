@@ -1,4 +1,4 @@
-name: Wöchentliche Angebotssuche
+name: Tägliche Angebotssuche
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - "scripts/update_offers.py"
       - ".github/workflows/weekly-offers.yml"
   schedule:
-    - cron: "13 8 * * 1"
+    - cron: "13 8 * * *"
       timezone: Europe/Berlin
   workflow_dispatch:
 
@@ -46,7 +46,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Keine Änderung an angebote.json."
           else
-            git commit -m "Wöchentliche Angebotsdaten aktualisieren"
+            git commit -m "Tägliche Angebotsdaten aktualisieren"
             git pull --rebase origin main
             git push
           fi
