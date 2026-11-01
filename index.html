@@ -10,10 +10,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="app.js?v=20261101-1" defer></script>
+    <script src="app.js?v=20261101-2" defer></script>
   </head>
   <body>
-    <div class="page-shell">
+    <main id="access-gate" class="access-gate" aria-labelledby="access-title">
+      <form id="access-form" class="access-card">
+        <div class="access-mark" aria-hidden="true">UW</div>
+        <p class="access-eyebrow">PRIVATER ZUGANG</p>
+        <h1 id="access-title">Willkommen</h1>
+        <p class="access-description">Bitte gib das Passwort ein, um die Seite aufzurufen.</p>
+        <label for="access-password">Passwort</label>
+        <input id="access-password" name="password" type="password" autocomplete="current-password" required />
+        <button type="submit">Weiter <span aria-hidden="true">↗</span></button>
+        <p id="access-message" class="access-message" aria-live="polite"></p>
+      </form>
+    </main>
+    <div class="page-shell" hidden>
       <header class="topbar">
         <a class="brand" href="#start" aria-label="Ultra White Deals Startseite">
           <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
