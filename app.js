@@ -144,5 +144,33 @@ function renderOfferGroup(grid, offers, emptyTitle, emptyText) {
   grid.append(empty);
 }
 
-loadOffers();
+const accessGate = document.querySelector("#access-gate");
+const accessForm = document.querySelector("#access-form");
+const accessPassword = document.querySelector("#access-password");
+const accessMessage = document.querySelector("#access-message");
+const pageContent = document.querySelector(".page-shell");
 
+function showPage() {
+  accessGate.hidden = true;
+  pageContent.hidden = false;
+  loadOffers();
+}
+
+if (sessionStorage.getItem("ultra-white-access") === "granted") {
+  showPage();
+} else {
+  pageContent.hidden = true;
+  accessPassword.focus();
+}
+
+accessForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (accessPassword.value === "Julian") {
+    sessionStorage.setItem("ultra-white-access", "granted");
+    showPage();
+  } else {
+    accessMessage.textContent = "Das Passwort stimmt nicht. Bitte versuche es erneut.";
+    accessPassword.value = "";
+    accessPassword.focus();
+  }
+});
