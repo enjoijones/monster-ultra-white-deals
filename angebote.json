@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-11-01",
+  "updatedAt": "2026-11-02",
   "offers": [
     {
       "retailer": "Netto Marken-Discount",
       "product": "Monster Energy (Sorte nicht angegeben)",
       "price": 0.88,
       "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
-      "regionValidity": "kaufDA-Händlerangebot; lokale Teilnahme und Preise können abweichen; Händler: Netto Marken-Discount",
+      "regionValidity": "kaufDA-Angebotsübersicht Amberg; Filialteilnahme und regionale Preisabweichungen prüfen; Händler: Netto Marken-Discount",
       "verification": "unverified",
       "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
-      "url": "https://www.kaufda.de/Angebote/Monster-Energy",
+      "url": "https://www.kaufda.de/Amberg-Oberpf/Angebote/Energydrink",
       "validFrom": "2026-11-02",
       "validUntil": "2026-11-07"
     },
