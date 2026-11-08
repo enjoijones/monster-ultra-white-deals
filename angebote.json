@@ -1,41 +1,29 @@
 {
-  "updatedAt": "2026-11-07",
+  "updatedAt": "2026-11-08",
   "offers": [
     {
-      "retailer": "Netto Marken-Discount",
+      "retailer": "Kaufland, Krötenseestraße 1",
       "product": "Monster Energy (Sorte nicht angegeben)",
-      "price": 0.88,
-      "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
-      "regionValidity": "kaufDA-Angebotsübersicht Amberg; Filialteilnahme und regionale Preisabweichungen prüfen; Händler: Netto Marken-Discount",
+      "price": 0.79,
+      "size": "0,5 l Dose",
+      "regionValidity": "Sulzbach-Rosenberg, diese Filiale; Händler: Kaufland, Krötenseestraße 1",
       "verification": "unverified",
       "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
-      "url": "https://www.kaufda.de/Amberg-Oberpf/Angebote/Energydrink",
-      "validFrom": "2026-11-02",
-      "validUntil": "2026-11-07"
+      "url": "https://filiale.kaufland.de/service/filiale/sulzbach-rosenberg-2400.html",
+      "validFrom": "2026-11-09",
+      "validUntil": "2026-11-14"
     },
     {
-      "retailer": "EDEKA",
+      "retailer": "Kaufland, Am Bergsteig 1 (Amberg)",
       "product": "Monster Energy (Sorte nicht angegeben)",
-      "price": 0.99,
-      "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
-      "regionValidity": "kaufDA-Händlerangebot; lokale Teilnahme und Preise können abweichen; Händler: EDEKA",
+      "price": 0.79,
+      "size": "0,5 l Dose",
+      "regionValidity": "Amberg, diese Filiale; Händler: Kaufland, Am Bergsteig 1 (Amberg)",
       "verification": "unverified",
       "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
-      "url": "https://www.kaufda.de/Angebote/Monster-Energy",
-      "validFrom": "2026-11-02",
-      "validUntil": "2026-11-07"
-    },
-    {
-      "retailer": "E center",
-      "product": "Monster Energy (Sorte nicht angegeben)",
-      "price": 0.99,
-      "size": "0,5 l Dose (aus Grundpreis abgeleitet)",
-      "regionValidity": "kaufDA-Händlerangebot; lokale Teilnahme und Preise können abweichen; Händler: E center",
-      "verification": "unverified",
-      "badge": "SORTENANGEBOT NICHT BESTÄTIGT",
-      "url": "https://www.kaufda.de/Angebote/Monster-Energy",
-      "validFrom": "2026-11-02",
-      "validUntil": "2026-11-07"
+      "url": "https://filiale.kaufland.de/service/filiale/amberg-4750.html",
+      "validFrom": "2026-11-09",
+      "validUntil": "2026-11-14"
     }
   ]
 }
